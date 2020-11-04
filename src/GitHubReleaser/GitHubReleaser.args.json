@@ -7,6 +7,18 @@
       "Command": "Test1",
       "Items": [
         {
+          "Id": "2762c393-a835-4357-8543-d0c1c1d45fdb",
+          "Command": "/github-repo:\"Suplanus/GitHubReleaser\""
+        },
+        {
+          "Id": "82ec0542-defa-498f-814d-b85df87b49b1",
+          "Command": "/github-token:\"Fill out Secrets.cs\""
+        },
+        {
+          "Id": "3735ff7a-efec-45ad-a02e-1f2fe65e5926",
+          "Command": "/file-for-version:\".\\GitHubReleaser.exe\""
+        },
+        {
           "Id": "912b3373-c011-40ab-857c-1aa38c0b5042",
           "Command": "/create-changelog-file:\"true\""
         },
@@ -16,7 +28,7 @@
         },
         {
           "Id": "3c1e4015-2cf8-4927-b596-4cb39742ddcb",
-          "Command": "/release-attachments:\"TODO\" \"TODO\""
+          "Command": "/release-attachments:\".\\..\\..\\..\\..\\..\\demodata\\example.zip\""
         },
         {
           "Id": "29245bfd-5851-4c3d-9089-e6648a84e599",
@@ -24,23 +36,15 @@
         },
         {
           "Id": "1da6e697-648d-495f-b2a4-27447f58ba81",
-          "Command": "/issue-labels:\"bug;Bug\" \"feature;Feature\""
+          "Command": "/issue-labels:\"bug;Bug\" \"enhancement;Enhancement\""
         },
         {
           "Id": "a01d7c65-8590-4015-a84e-da00eb1e8ecd",
           "Command": "/pre-release:\"false\""
         },
         {
-          "Id": "3735ff7a-efec-45ad-a02e-1f2fe65e5926",
-          "Command": "/file-for-version:\"TODO\""
-        },
-        {
-          "Id": "82ec0542-defa-498f-814d-b85df87b49b1",
-          "Command": "/github-token:\"Fill out Secrets.cs\""
-        },
-        {
-          "Id": "2762c393-a835-4357-8543-d0c1c1d45fdb",
-          "Command": "/github-repo:\"Suplanus/GitHubReleaser\""
+          "Id": "d9b72d73-4d90-4975-bae5-41bc95787a9a",
+          "Command": "/draft:\"true\""
         }
       ]
     }

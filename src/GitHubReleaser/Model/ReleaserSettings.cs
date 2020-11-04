@@ -12,9 +12,11 @@ namespace GitHubReleaser.Model
 
     public string IssueFilterLabel { get; set; }
 
-    public List<string> IssueLabels { get; set; }
+    public Dictionary<string, string> IssueLabels { get; set; }
 
     public bool IsPreRelease { get; set; }
+
+    public bool IsDraft { get; set; }
 
     public string FileForVersion { get; set; }
 

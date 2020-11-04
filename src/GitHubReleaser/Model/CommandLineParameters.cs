@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System.Linq;
 using Fclp;
 
 namespace GitHubReleaser.Model
@@ -8,7 +8,9 @@ namespace GitHubReleaser.Model
   {
     public ICommandLineParserResult Result { get; set; }
 
-    public static CommandLineParameters GetCommandLineParameters(string[] args)
+    public List<string> IssueLabelsWithHeader { get; set; }
+
+    public static CommandLineParameters FromArguments(string[] args)
     {
       var parser = new FluentCommandLineParser<CommandLineParameters>();
       parser.Setup(arg => arg.GitHubRepo)
@@ -26,7 +28,7 @@ namespace GitHubReleaser.Model
       parser.Setup(arg => arg.IsPreRelease)
             .As("pre-release");
 
-      parser.Setup(arg => arg.IssueLabels)
+      parser.Setup(arg => arg.IssueLabelsWithHeader)
             .As("issue-labels");
 
       parser.Setup(arg => arg.IssueFilterLabel)
@@ -41,8 +43,22 @@ namespace GitHubReleaser.Model
       parser.Setup(arg => arg.IsChangelogFileCreationEnabled)
             .As("create-changelog-file");
 
+      parser.Setup(arg => arg.IsDraft)
+            .As("draft");
+
       var result = parser.Parse(args);
       var commandLineArguments = parser.Object;
+
+      // Manual map
+      if (parser.Object.IssueLabelsWithHeader != null)
+      {
+        foreach (var issueLabelWithHeader in parser.Object.IssueLabelsWithHeader)
+        {
+          var split = issueLabelWithHeader.Split(';');
+          parser.Object.IssueLabels.Add(split.First(), split.Last());
+        }
+      }
+
       commandLineArguments.Result = result;
 
 #if DEBUG

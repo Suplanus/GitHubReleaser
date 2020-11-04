@@ -2,7 +2,7 @@
   "profiles": {
     "GitHubReleaser": {
       "commandName": "Project",
-      "commandLineArgs": "/create-changelog-file:\"true\" /update-only:\"false\" /release-attachments:\"TODO\" \"TODO\" /issue-filter-label:\"not-in-changelog\" /issue-labels:\"bug;Bug\" \"feature;Feature\" /pre-release:\"false\" /file-for-version:\"TODO\" /github-token:\"TODO\" /github-repo:\"Suplanus/GitHubReleaser\""
+      "commandLineArgs": "/github-repo:\"Suplanus/GitHubReleaser\" /github-token:\"Fill out Secrets.cs\" /file-for-version:\".\\GitHubReleaser.exe\" /create-changelog-file:\"true\" /update-only:\"false\" /release-attachments:\".\\..\\..\\..\\..\\..\\demodata\\example.zip\" /issue-filter-label:\"not-in-changelog\" /issue-labels:\"bug;Bug\" \"feature;Feature\" /pre-release:\"false\""
     }
   }
 }
