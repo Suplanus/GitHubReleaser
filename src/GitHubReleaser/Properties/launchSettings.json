@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "GitHubReleaser": {
+      "commandName": "Project",
+      "commandLineArgs": "/create-changelog-file:\"true\" /update-only:\"false\" /release-attachments:\"TODO\" \"TODO\" /issue-filter-label:\"not-in-changelog\" /issue-labels:\"bug;Bug\" \"feature;Feature\" /pre-release:\"false\" /file-for-version:\"TODO\" /github-token:\"TODO\" /github-repo:\"Suplanus/GitHubReleaser\""
+    }
+  }
+}

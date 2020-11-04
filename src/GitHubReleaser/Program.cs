@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using GitHubReleaser.Model;
 using Serilog;
@@ -21,20 +22,22 @@ namespace GitHubReleaser
                    .CreateLogger();
 
       // CommandLineParameters
-      CommandLineParameters = new CommandLineParameters(args);
+      CommandLineParameters = CommandLineParameters.GetCommandLineParameters(args);
       if (CommandLineParameters.Result.HasErrors)
       {
         Log.Error($"Error in parameters: {CommandLineParameters.Result.ErrorText}");
         Environment.Exit(160);
       }
-      foreach (var keyValuePair in CommandLineParameters.Result.AdditionalOptionsFound)
-      {
-        if (!string.IsNullOrWhiteSpace(keyValuePair.Value))
-        {
-          Log.Information($"{keyValuePair.Key}: {keyValuePair.Value}");  
-        }
-      }
-      
+      LogParameter(nameof(CommandLineParameters.GitHubRepo), CommandLineParameters.GitHubRepo);
+      LogParameter(nameof(CommandLineParameters.GitHubToken), CommandLineParameters.GitHubToken);
+      LogParameter(nameof(CommandLineParameters.FileForVersion), CommandLineParameters.FileForVersion);
+      LogParameter(nameof(CommandLineParameters.IsChangelogFileCreationEnabled), CommandLineParameters.IsChangelogFileCreationEnabled);
+      LogParameter(nameof(CommandLineParameters.IsPreRelease), CommandLineParameters.IsPreRelease);
+      LogParameter(nameof(CommandLineParameters.IsUpdateOnly), CommandLineParameters.IsUpdateOnly);
+      LogParameter(nameof(CommandLineParameters.IssueFilterLabel), CommandLineParameters.IssueFilterLabel);
+      LogParameter(nameof(CommandLineParameters.IssueLabels), CommandLineParameters.IssueLabels);
+      LogParameter(nameof(CommandLineParameters.ReleaseAttachments), CommandLineParameters.ReleaseAttachments);
+
       // Execute
       Releaser releaser = new Releaser(CommandLineParameters);
       releaser.Execute();
@@ -42,7 +45,22 @@ namespace GitHubReleaser
 
     private static void LogParameter(string name, object value)
     {
-      
+      if (!string.IsNullOrWhiteSpace(value?.ToString()))
+      {
+        if (value is List<string> list)
+        {
+          string listValue = string.Empty;
+          foreach (var item in list)
+          {
+            listValue = listValue + Environment.NewLine + "\t\t" + item;
+          }
+          Log.Information($"{name}: {listValue}");  
+        }
+        else
+        {
+          Log.Information($"{name}: {value}");  
+        }
+      }
     }
   }
 }

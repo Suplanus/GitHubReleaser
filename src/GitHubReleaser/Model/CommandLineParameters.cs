@@ -1,4 +1,5 @@
-﻿using Fclp;
+﻿using System.Runtime.CompilerServices;
+using Fclp;
 
 namespace GitHubReleaser.Model
 {
@@ -6,48 +7,52 @@ namespace GitHubReleaser.Model
   {
     public ICommandLineParserResult Result { get; set; }
 
-    public FluentCommandLineParser<CommandLineParameters> Parser { get; set; }
-
-    public CommandLineParameters(string[] args)
+    public static CommandLineParameters GetCommandLineParameters(string[] args)
     {
-      Parser = new FluentCommandLineParser<CommandLineParameters>();
-      Setup();
-      Result = Parser.Parse(args);
-    }
-
-    public CommandLineParameters() {}
-
-    private void Setup()
-    {
-      Parser.Setup(arg => arg.GitHubRepo)
+      var parser = new FluentCommandLineParser<CommandLineParameters>();
+      parser.Setup(arg => arg.GitHubRepo)
             .As("github-repo")
             .Required();
 
-      Parser.Setup(arg => arg.GitHubToken)
+      parser.Setup(arg => arg.GitHubToken)
             .As("github-token")
             .Required();
 
-      Parser.Setup(arg => arg.FileForVersion)
+      parser.Setup(arg => arg.FileForVersion)
             .As("file-for-version")
             .Required();
 
-      Parser.Setup(arg => arg.IsPreRelease)
+      parser.Setup(arg => arg.IsPreRelease)
             .As("pre-release");
 
-      Parser.Setup(arg => arg.IssueLabels)
-            .As("issue-labels	");
+      parser.Setup(arg => arg.IssueLabels)
+            .As("issue-labels");
 
-      Parser.Setup(arg => arg.IssueFilterLabel)
-            .As("issue-filter-label	");
+      parser.Setup(arg => arg.IssueFilterLabel)
+            .As("issue-filter-label");
 
-      Parser.Setup(arg => arg.ReleaseAttachments)
+      parser.Setup(arg => arg.ReleaseAttachments)
             .As("release-attachments");
 
-      Parser.Setup(arg => arg.IsUpdateOnly)
+      parser.Setup(arg => arg.IsUpdateOnly)
             .As("update-only");
 
-      Parser.Setup(arg => arg.IsChangelogFileCreationEnabled)
+      parser.Setup(arg => arg.IsChangelogFileCreationEnabled)
             .As("create-changelog-file");
+
+      var result = parser.Parse(args);
+      var commandLineArguments = parser.Object;
+      commandLineArguments.Result = result;
+
+#if DEBUG
+      commandLineArguments.GitHubToken = Secrets.GitHubToken;
+#endif
+      return commandLineArguments;
     }
+  }
+
+  internal static class Secrets
+  {
+    public static string GitHubToken => "9065c29143e2e1ac196bd91b13418c8e9677ac97";
   }
 }

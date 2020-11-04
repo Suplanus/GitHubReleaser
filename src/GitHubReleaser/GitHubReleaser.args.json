@@ -3,40 +3,46 @@
   "Id": "eef80a13-60c4-481f-a254-d281ee5450be",
   "Items": [
     {
-      "Id": "912b3373-c011-40ab-857c-1aa38c0b5042",
-      "Command": "/create-changelog-file:\"true\""
-    },
-    {
-      "Id": "19e9d293-a5af-45a7-b5a9-949bcdd8ddae",
-      "Command": "/update-only:\"false\""
-    },
-    {
-      "Id": "3c1e4015-2cf8-4927-b596-4cb39742ddcb",
-      "Command": "/release-attachments:\"TODO\" \"TODO\""
-    },
-    {
-      "Id": "29245bfd-5851-4c3d-9089-e6648a84e599",
-      "Command": "/issue-filter-label:\"not-in-changelog\""
-    },
-    {
-      "Id": "1da6e697-648d-495f-b2a4-27447f58ba81",
-      "Command": "/issue-labels:\"bug;Bug\" \"feature;Feature\""
-    },
-    {
-      "Id": "a01d7c65-8590-4015-a84e-da00eb1e8ecd",
-      "Command": "/pre-release:\"false\""
-    },
-    {
-      "Id": "3735ff7a-efec-45ad-a02e-1f2fe65e5926",
-      "Command": "/file-for-version:\"TODO\""
-    },
-    {
-      "Id": "82ec0542-defa-498f-814d-b85df87b49b1",
-      "Command": "/github-token:\"TODO\""
-    },
-    {
-      "Id": "2762c393-a835-4357-8543-d0c1c1d45fdb",
-      "Command": "/github-repo:\"Suplanus/GitHubReleaser\""
+      "Id": "a6460bf8-07be-48ea-b2f4-11bca9e86648",
+      "Command": "Test1",
+      "Items": [
+        {
+          "Id": "912b3373-c011-40ab-857c-1aa38c0b5042",
+          "Command": "/create-changelog-file:\"true\""
+        },
+        {
+          "Id": "19e9d293-a5af-45a7-b5a9-949bcdd8ddae",
+          "Command": "/update-only:\"false\""
+        },
+        {
+          "Id": "3c1e4015-2cf8-4927-b596-4cb39742ddcb",
+          "Command": "/release-attachments:\"TODO\" \"TODO\""
+        },
+        {
+          "Id": "29245bfd-5851-4c3d-9089-e6648a84e599",
+          "Command": "/issue-filter-label:\"not-in-changelog\""
+        },
+        {
+          "Id": "1da6e697-648d-495f-b2a4-27447f58ba81",
+          "Command": "/issue-labels:\"bug;Bug\" \"feature;Feature\""
+        },
+        {
+          "Id": "a01d7c65-8590-4015-a84e-da00eb1e8ecd",
+          "Command": "/pre-release:\"false\""
+        },
+        {
+          "Id": "3735ff7a-efec-45ad-a02e-1f2fe65e5926",
+          "Command": "/file-for-version:\"TODO\""
+        },
+        {
+          "Id": "82ec0542-defa-498f-814d-b85df87b49b1",
+          "Command": "/github-token:\"Fill out Secrets.cs\""
+        },
+        {
+          "Id": "2762c393-a835-4357-8543-d0c1c1d45fdb",
+          "Command": "/github-repo:\"Suplanus/GitHubReleaser\""
+        }
+      ]
     }
   ]
 }
