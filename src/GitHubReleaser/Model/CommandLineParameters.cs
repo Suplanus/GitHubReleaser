@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Fclp;
 
 namespace GitHubReleaser.Model
@@ -49,10 +50,5 @@ namespace GitHubReleaser.Model
 #endif
       return commandLineArguments;
     }
-  }
-
-  internal static class Secrets
-  {
-    public static string GitHubToken => "9065c29143e2e1ac196bd91b13418c8e9677ac97";
   }
 }
