@@ -1,5 +1,3 @@
-Changelog
-
 ## [0.1.2](https://github.com/Suplanus/GitHubReleaser/releases/tag/0.1.2.5)
 
 #### Build: 5 | Date: 2020-11-05 16:27
