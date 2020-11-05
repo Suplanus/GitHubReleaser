@@ -1,6 +1,6 @@
 ## [0.1.2](https://github.com/Suplanus/GitHubReleaser/releases/tag/0.1.2.5)
 
-`Build: 5 | Date: 2020-11-04 13:27`
+`Build: 5 | Date (UTC): 2020-11-05 13:27`
 
 #### Bugs:
 - [Test1](https://github.com/Suplanus/GitHubReleaser/issues/2)
@@ -11,7 +11,7 @@
 
 ## [0.1.2](https://github.com/Suplanus/GitHubReleaser/releases/tag/0.1.2.4)
 
-`Build: 4 | Date: 2020-11-04 13:27 | Pre-release`
+`Build: 4 | Date (UTC): 2020-11-05 13:27 | Pre-release`
 
 
 #### Bug:
@@ -19,7 +19,7 @@
 
 ## [0.1.2](https://github.com/Suplanus/GitHubReleaser/releases/tag/0.1.2.3)
 
-`Build: 3 | Date: 2020-11-04 13:27 | Pre-release`
+`Build: 3 | Date (UTC): 2020-11-05 13:27 | Pre-release`
 
 
 #### Bug:
