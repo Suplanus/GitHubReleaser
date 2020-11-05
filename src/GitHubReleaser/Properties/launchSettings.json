@@ -2,7 +2,7 @@
   "profiles": {
     "GitHubReleaser": {
       "commandName": "Project",
-      "commandLineArgs": "/github-repo:\"Suplanus/GitHubReleaser\" /github-token:\"Fill out Secrets.cs\" /create-changelog-file:\"true\" /issue-filter-label:\"not-in-changelog\" /issue-labels:\"bug;Bugs\" \"enhancement;Enhancements\" /draft:\"false\" /delete-files-after-upload:\"false\" /file-for-version:\".\\..\\..\\..\\..\\..\\demodata\\0.1.2.5.exe\" /pre-release:\"false\" /release-attachments:\".\\..\\..\\..\\..\\..\\demodata\\example1.zip\""
+      "commandLineArgs": "/github-repo:\"Suplanus/GitHubReleaser\" /create-changelog-file:\"true\" /issue-filter-label:\"not-in-changelog\" /issue-labels:\"bug;Bugs\" \"enhancement;Enhancements\" /draft:\"false\" /delete-files-after-upload:\"false\" /file-for-version:\".\\GitHubReleaser.exe\" /release-attachments:\".\\..\\Release.zip\" /github-repo:\"Suplanus/GitHubReleaser\" /github-token:\"d096c2745f928e24b090d09284165e5ff2b4c121\" /create-changelog-file:\"true\" /issue-filter-label:\"not-in-changelog\" /issue-labels:\"bug;Bugs\" \"enhancement;Enhancements\" /draft:\"false\" /delete-files-after-upload:\"false\" /update-only:\"false\""
     }
   }
 }

@@ -3,148 +3,232 @@
   "Id": "eef80a13-60c4-481f-a254-d281ee5450be",
   "Items": [
     {
-      "Id": "e06c0b9c-4451-4022-a717-1e7b6278db7e",
-      "Command": "Common",
+      "Id": "f59968cc-e42c-44ac-ba50-06769cca33a0",
+      "Command": "Test",
       "Items": [
         {
-          "Id": "7308522a-66f7-4abd-a134-13ecf87bd086",
-          "Command": "/github-repo:\"Suplanus/GitHubReleaser\""
-        },
-        {
-          "Id": "844c3b89-43e5-41c1-be61-6aa7ce6852ef",
-          "Command": "/github-token:\"Fill out Secrets.cs\""
-        },
-        {
-          "Id": "eccd00ee-3262-41f6-8099-c17f5c1f5115",
-          "Command": "/create-changelog-file:\"true\""
-        },
-        {
-          "Id": "2fc6263b-fab5-4614-b79e-6787c6be8a5e",
-          "Command": "/issue-filter-label:\"not-in-changelog\""
-        },
-        {
-          "Id": "a9bc5139-2487-4f21-bf3b-42e386268760",
-          "Command": "/issue-labels:\"bug;Bugs\" \"enhancement;Enhancements\""
-        },
-        {
-          "Id": "41ddadf6-d226-4a7d-9a73-e2202732797b",
-          "Command": "/draft:\"false\""
-        },
-        {
-          "Id": "5882777c-7fd8-4267-b2b5-1b257235993f",
-          "Command": "/delete-files-after-upload:\"false\""
-        }
-      ]
-    },
-    {
-      "Id": "c07f08b7-0f2e-45cb-911a-8a9fcb5b0f80",
-      "Command": "Release",
-      "Items": [
-        {
-          "Id": "ef0b156b-9571-480c-abdf-2f257633df5c",
-          "Command": "/file-for-version:\".\\..\\..\\..\\..\\..\\demodata\\0.1.2.3.dll\""
-        },
-        {
-          "Id": "fa9bed05-5e42-4ed1-8913-328c3cf78525",
-          "Command": "/pre-release:\"false\""
-        },
-        {
-          "Id": "6c863e67-e608-4911-8af4-3505403daed5",
-          "Command": "Create",
+          "Id": "31ff52ad-ffd5-44a3-bd74-affe07f7df21",
+          "Command": "Common",
           "Items": [
             {
-              "Id": "22f04a2e-9908-426c-9d27-47249943aace",
-              "Command": "/release-attachments:\".\\..\\..\\..\\..\\..\\demodata\\example1.zip\""
+              "Id": "10188794-9d4e-4fbe-b450-49dc500bab4b",
+              "Command": "/github-repo:\"Suplanus/GitHubReleaser\""
             },
             {
-              "Id": "7e96d8ef-a588-4f65-81da-8913c361a9ff",
-              "Command": "/update-only:\"false\""
+              "Id": "66d2ca42-1828-4f28-a3a5-01717a71f436",
+              "Command": "/github-token:\"Fill out Secrets.cs\""
+            },
+            {
+              "Id": "adc3a3e9-741f-4a70-8268-48e3eac12f65",
+              "Command": "/create-changelog-file:\"true\""
+            },
+            {
+              "Id": "ccf9141f-2477-48ea-9f21-57b780e9babe",
+              "Command": "/issue-filter-label:\"not-in-changelog\""
+            },
+            {
+              "Id": "5c7ffbf0-c886-4e6a-9997-170790271a1b",
+              "Command": "/issue-labels:\"bug;Bugs\" \"enhancement;Enhancements\""
+            },
+            {
+              "Id": "f34a0e39-bbfd-4636-911e-c57a51506cc6",
+              "Command": "/draft:\"false\""
+            },
+            {
+              "Id": "ad7d8700-6446-4735-af4f-20705bcdbe3d",
+              "Command": "/delete-files-after-upload:\"false\""
             }
           ]
         },
         {
-          "Id": "ac3e1ddc-3d45-4a2e-ac3c-0c0131ff23a2",
-          "Command": "Update",
+          "Id": "9a8f3dab-5f70-4361-8631-3a5751845afd",
+          "Command": "Release",
           "Items": [
             {
-              "Id": "958d6c38-1e07-4b1f-86b0-b46a8647cb51",
-              "Command": "/release-attachments:\".\\..\\..\\..\\..\\..\\demodata\\example2.zip\""
+              "Id": "d6139be2-da9d-4baf-bfab-ad56fe2d9533",
+              "Command": "/file-for-version:\".\\..\\..\\..\\..\\..\\demodata\\0.1.2.3.dll\""
             },
             {
-              "Id": "1babe658-503d-403e-9b04-ce8e6d1ccaa9",
-              "Command": "/update-only:\"true\""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Id": "52292cba-5320-476d-b3d2-c53a7734d873",
-      "Command": "PreRelease",
-      "Items": [
-        {
-          "Id": "a6460bf8-07be-48ea-b2f4-11bca9e86648",
-          "Command": "1",
-          "Items": [
-            {
-              "Id": "3735ff7a-efec-45ad-a02e-1f2fe65e5926",
-              "Command": "/file-for-version:\".\\..\\..\\..\\..\\..\\demodata\\0.1.2.3.exe\""
-            },
-            {
-              "Id": "a01d7c65-8590-4015-a84e-da00eb1e8ecd",
-              "Command": "/pre-release:\"true\""
-            }
-          ]
-        },
-        {
-          "Id": "366e7f5d-c51d-4654-b543-d58df7ce632e",
-          "Command": "2",
-          "Items": [
-            {
-              "Id": "3d532ca6-0e3e-4c7f-b7b1-a52c0bb6da9b",
-              "Command": "/file-for-version:\".\\..\\..\\..\\..\\..\\demodata\\0.1.2.4.exe\""
-            },
-            {
-              "Id": "9b865b29-f9de-4a90-9223-f3d66b3b777d",
-              "Command": "/pre-release:\"true\""
-            }
-          ]
-        },
-        {
-          "Id": "510f0921-93a1-430d-b361-d533c8bccbc7",
-          "Command": "3",
-          "Items": [
-            {
-              "Id": "b9f374e9-b6ca-4736-bd43-e461b143425d",
-              "Command": "/file-for-version:\".\\..\\..\\..\\..\\..\\demodata\\0.1.2.5.exe\""
-            },
-            {
-              "Id": "18635c82-15bb-4fbc-bb9f-cf09e2ac1314",
+              "Id": "a6fcaa26-a9e0-4629-9812-7b7aa44041c7",
               "Command": "/pre-release:\"false\""
             },
             {
-              "Id": "34af3c38-a845-481e-8845-88db77275a59",
-              "Command": "/release-attachments:\".\\..\\..\\..\\..\\..\\demodata\\example1.zip\""
+              "Id": "86f9ac55-e067-416a-844c-857969853fbe",
+              "Command": "Create",
+              "Items": [
+                {
+                  "Id": "7a496341-222c-4da0-b4b6-edfd908ec81f",
+                  "Command": "/release-attachments:\".\\..\\..\\..\\..\\..\\demodata\\example1.zip\""
+                },
+                {
+                  "Id": "05406f61-0a97-42c4-ad35-bc342df4f2b9",
+                  "Command": "/update-only:\"false\""
+                }
+              ]
+            },
+            {
+              "Id": "fca0f85a-d1b2-403a-ac08-444261179b31",
+              "Command": "Update",
+              "Items": [
+                {
+                  "Id": "e904e603-9318-4aad-8dfa-dbda2f60afdd",
+                  "Command": "/release-attachments:\".\\..\\..\\..\\..\\..\\demodata\\example2.zip\""
+                },
+                {
+                  "Id": "d10c75fb-30d4-45a5-87d0-28c0da2f8b4b",
+                  "Command": "/update-only:\"true\""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": "4f4afcad-bd02-4584-bf6f-f398005d8282",
+          "Command": "PreRelease",
+          "Items": [
+            {
+              "Id": "88bf43d5-e633-4a01-8785-5eadfdc97aea",
+              "Command": "1",
+              "Items": [
+                {
+                  "Id": "0e5b5810-decd-4cc7-876c-780e3dc5973a",
+                  "Command": "/file-for-version:\".\\..\\..\\..\\..\\..\\demodata\\0.1.2.3.exe\""
+                },
+                {
+                  "Id": "5057ef3c-edb6-4454-8cbf-e2e99898e2a0",
+                  "Command": "/pre-release:\"true\""
+                }
+              ]
+            },
+            {
+              "Id": "6472bd7a-9a1e-4692-ab93-2c27b18cc584",
+              "Command": "2",
+              "Items": [
+                {
+                  "Id": "b2ced1e1-fbeb-45e5-bdb6-3ab6287b9d5d",
+                  "Command": "/file-for-version:\".\\..\\..\\..\\..\\..\\demodata\\0.1.2.4.exe\""
+                },
+                {
+                  "Id": "ec3bc229-0738-48a4-a7df-d358224bf5ff",
+                  "Command": "/pre-release:\"true\""
+                }
+              ]
+            },
+            {
+              "Id": "6cfcff55-0322-4dd3-9e06-7abf3baec0d4",
+              "Command": "3",
+              "Items": [
+                {
+                  "Id": "58eba2a1-dc0f-4c89-9e48-bc465449fc64",
+                  "Command": "/file-for-version:\".\\..\\..\\..\\..\\..\\demodata\\0.1.2.5.exe\""
+                },
+                {
+                  "Id": "66a1dc02-054b-422e-8cbf-2f6e1654cfe0",
+                  "Command": "/pre-release:\"false\""
+                },
+                {
+                  "Id": "e013a393-a7c9-4882-9036-7c83ba8e6d84",
+                  "Command": "/release-attachments:\".\\..\\..\\..\\..\\..\\demodata\\example1.zip\""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": "2f84915c-8cb9-4de9-8d2a-1b3502e2024f",
+          "Command": "Changelog",
+          "Items": [
+            {
+              "Id": "9a87c227-bd7e-40eb-9081-30d6b754d497",
+              "Command": "/update-only:\"true\""
+            },
+            {
+              "Id": "f50d038a-5a96-4637-9b31-5127d79dae18",
+              "Command": "/file-for-version:\".\\..\\..\\..\\..\\..\\demodata\\0.1.2.5.exe\""
+            },
+            {
+              "Id": "ec9b9e01-d810-4860-acc7-2a2c606224ba",
+              "Command": "/pre-release:\"false\""
             }
           ]
         }
       ]
     },
     {
-      "Id": "003b4821-29aa-4299-b21e-74e6aa1a8e3f",
-      "Command": "Changelog",
+      "Id": "777ef22e-58f8-4b1b-9fc4-e85ae62deac6",
+      "Command": "Release",
       "Items": [
         {
-          "Id": "bf3469f3-51ed-4178-b198-8a9bbe5d967a",
-          "Command": "/update-only:\"true\""
+          "Id": "e06c0b9c-4451-4022-a717-1e7b6278db7e",
+          "Command": "Common",
+          "Items": [
+            {
+              "Id": "875363c7-d16e-4b34-9e36-77f31167d2ee",
+              "Command": "/file-for-version:\".\\GitHubReleaser.exe\""
+            },
+            {
+              "Id": "7dff0d8f-2904-4956-859b-730dd2f7f0c8",
+              "Command": "/release-attachments:\".\\..\\Release.zip\""
+            },
+            {
+              "Id": "7308522a-66f7-4abd-a134-13ecf87bd086",
+              "Command": "/github-repo:\"Suplanus/GitHubReleaser\""
+            },
+            {
+              "Id": "eccd00ee-3262-41f6-8099-c17f5c1f5115",
+              "Command": "/create-changelog-file:\"true\""
+            },
+            {
+              "Id": "2fc6263b-fab5-4614-b79e-6787c6be8a5e",
+              "Command": "/issue-filter-label:\"not-in-changelog\""
+            },
+            {
+              "Id": "a9bc5139-2487-4f21-bf3b-42e386268760",
+              "Command": "/issue-labels:\"bug;Bugs\" \"enhancement;Enhancements\""
+            },
+            {
+              "Id": "41ddadf6-d226-4a7d-9a73-e2202732797b",
+              "Command": "/draft:\"false\""
+            },
+            {
+              "Id": "5882777c-7fd8-4267-b2b5-1b257235993f",
+              "Command": "/delete-files-after-upload:\"false\""
+            }
+          ]
         },
         {
-          "Id": "ec0d74ac-5047-403b-af55-c5d84f61fa16",
-          "Command": "/file-for-version:\".\\..\\..\\..\\..\\..\\demodata\\0.1.2.5.exe\""
-        },
-        {
-          "Id": "b137bcf8-e8a5-4387-8e57-7e20f6b2bf74",
-          "Command": "/pre-release:\"false\""
+          "Id": "c07f08b7-0f2e-45cb-911a-8a9fcb5b0f80",
+          "Command": "Release",
+          "Items": [
+            {
+              "Id": "ef0b156b-9571-480c-abdf-2f257633df5c",
+              "Command": "/file-for-version:\".\\..\\..\\..\\..\\..\\demodata\\0.1.2.3.dll\""
+            },
+            {
+              "Id": "fa9bed05-5e42-4ed1-8913-328c3cf78525",
+              "Command": "/pre-release:\"false\""
+            },
+            {
+              "Id": "6c863e67-e608-4911-8af4-3505403daed5",
+              "Command": "Create",
+              "Items": [
+                {
+                  "Id": "7e96d8ef-a588-4f65-81da-8913c361a9ff",
+                  "Command": "/update-only:\"false\""
+                }
+              ]
+            },
+            {
+              "Id": "ac3e1ddc-3d45-4a2e-ac3c-0c0131ff23a2",
+              "Command": "Update",
+              "Items": [
+                {
+                  "Id": "1babe658-503d-403e-9b04-ce8e6d1ccaa9",
+                  "Command": "/update-only:\"true\""
+                }
+              ]
+            }
+          ]
         }
       ]
     }
