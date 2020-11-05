@@ -59,25 +59,28 @@ namespace GitHubReleaser
         Environment.Exit(160);
       }
 
-      foreach (var attachment in commandLineParameters.ReleaseAttachments)
+      if (commandLineParameters.ReleaseAttachments != null)
       {
-        if (!File.Exists(attachment))
+        foreach (var attachment in commandLineParameters.ReleaseAttachments)
         {
-          Log.Error($"Attachment file not found: {attachment}");
-          Environment.Exit(160);
+          if (!File.Exists(attachment))
+          {
+            Log.Error($"Attachment file not found: {attachment}");
+            Environment.Exit(160);
+          }
         }
-      }
 
-      LogParameter(nameof(commandLineParameters.GitHubRepo), commandLineParameters.GitHubRepo);
-      LogParameter(nameof(commandLineParameters.GitHubToken), commandLineParameters.GitHubToken);
-      LogParameter(nameof(commandLineParameters.FileForVersion), commandLineParameters.FileForVersion);
-      LogParameter(nameof(commandLineParameters.IsChangelogFileCreationEnabled),
-                   commandLineParameters.IsChangelogFileCreationEnabled);
-      LogParameter(nameof(commandLineParameters.IsPreRelease), commandLineParameters.IsPreRelease);
-      LogParameter(nameof(commandLineParameters.IsUpdateOnly), commandLineParameters.IsUpdateOnly);
-      LogParameter(nameof(commandLineParameters.IssueFilterLabel), commandLineParameters.IssueFilterLabel);
-      LogParameter(nameof(commandLineParameters.IssueLabels), commandLineParameters.IssueLabels);
-      LogParameter(nameof(commandLineParameters.ReleaseAttachments), commandLineParameters.ReleaseAttachments);
+        LogParameter(nameof(commandLineParameters.GitHubRepo), commandLineParameters.GitHubRepo);
+        LogParameter(nameof(commandLineParameters.GitHubToken), commandLineParameters.GitHubToken);
+        LogParameter(nameof(commandLineParameters.FileForVersion), commandLineParameters.FileForVersion);
+        LogParameter(nameof(commandLineParameters.IsChangelogFileCreationEnabled),
+                     commandLineParameters.IsChangelogFileCreationEnabled);
+        LogParameter(nameof(commandLineParameters.IsPreRelease), commandLineParameters.IsPreRelease);
+        LogParameter(nameof(commandLineParameters.IsUpdateOnly), commandLineParameters.IsUpdateOnly);
+        LogParameter(nameof(commandLineParameters.IssueFilterLabel), commandLineParameters.IssueFilterLabel);
+        LogParameter(nameof(commandLineParameters.IssueLabels), commandLineParameters.IssueLabels);
+        LogParameter(nameof(commandLineParameters.ReleaseAttachments), commandLineParameters.ReleaseAttachments);
+      }
 
       return commandLineParameters;
     }

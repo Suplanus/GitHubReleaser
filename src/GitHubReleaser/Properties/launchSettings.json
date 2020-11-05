@@ -2,7 +2,7 @@
   "profiles": {
     "GitHubReleaser": {
       "commandName": "Project",
-      "commandLineArgs": "/github-repo:\"Suplanus/GitHubReleaser\" /github-token:\"Fill out Secrets.cs\" /file-for-version:\".\\..\\..\\..\\..\\..\\demodata\\1.2.3.4.dll\" /create-changelog-file:\"true\" /update-only:\"false\" /release-attachments:\".\\..\\..\\..\\..\\..\\demodata\\example.zip\" /issue-filter-label:\"not-in-changelog\" /issue-labels:\"bug;Bug\" \"enhancement;Enhancement\" /pre-release:\"false\" /draft:\"false\" /delete-files-after-upload:\"false\""
+      "commandLineArgs": "/github-repo:\"Suplanus/GitHubReleaser\" /github-token:\"Fill out Secrets.cs\" /create-changelog-file:\"true\" /issue-filter-label:\"not-in-changelog\" /issue-labels:\"bug;Bug\" \"enhancement;Enhancement\" /draft:\"false\" /delete-files-after-upload:\"false\" /file-for-version:\".\\..\\..\\..\\..\\..\\demodata\\0.1.2.5.exe\" /pre-release:\"false\""
     }
   }
 }

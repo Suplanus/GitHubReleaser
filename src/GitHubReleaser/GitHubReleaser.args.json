@@ -3,52 +3,126 @@
   "Id": "eef80a13-60c4-481f-a254-d281ee5450be",
   "Items": [
     {
-      "Id": "a6460bf8-07be-48ea-b2f4-11bca9e86648",
-      "Command": "Test1",
+      "Id": "e06c0b9c-4451-4022-a717-1e7b6278db7e",
+      "Command": "Common",
       "Items": [
         {
-          "Id": "2762c393-a835-4357-8543-d0c1c1d45fdb",
+          "Id": "7308522a-66f7-4abd-a134-13ecf87bd086",
           "Command": "/github-repo:\"Suplanus/GitHubReleaser\""
         },
         {
-          "Id": "82ec0542-defa-498f-814d-b85df87b49b1",
+          "Id": "844c3b89-43e5-41c1-be61-6aa7ce6852ef",
           "Command": "/github-token:\"Fill out Secrets.cs\""
         },
         {
-          "Id": "3735ff7a-efec-45ad-a02e-1f2fe65e5926",
-          "Command": "/file-for-version:\".\\..\\..\\..\\..\\..\\demodata\\1.2.3.4.dll\""
-        },
-        {
-          "Id": "912b3373-c011-40ab-857c-1aa38c0b5042",
+          "Id": "eccd00ee-3262-41f6-8099-c17f5c1f5115",
           "Command": "/create-changelog-file:\"true\""
         },
         {
-          "Id": "19e9d293-a5af-45a7-b5a9-949bcdd8ddae",
-          "Command": "/update-only:\"false\""
-        },
-        {
-          "Id": "3c1e4015-2cf8-4927-b596-4cb39742ddcb",
-          "Command": "/release-attachments:\".\\..\\..\\..\\..\\..\\demodata\\example.zip\""
-        },
-        {
-          "Id": "29245bfd-5851-4c3d-9089-e6648a84e599",
+          "Id": "2fc6263b-fab5-4614-b79e-6787c6be8a5e",
           "Command": "/issue-filter-label:\"not-in-changelog\""
         },
         {
-          "Id": "1da6e697-648d-495f-b2a4-27447f58ba81",
+          "Id": "a9bc5139-2487-4f21-bf3b-42e386268760",
           "Command": "/issue-labels:\"bug;Bug\" \"enhancement;Enhancement\""
         },
         {
-          "Id": "a01d7c65-8590-4015-a84e-da00eb1e8ecd",
-          "Command": "/pre-release:\"false\""
-        },
-        {
-          "Id": "d9b72d73-4d90-4975-bae5-41bc95787a9a",
+          "Id": "41ddadf6-d226-4a7d-9a73-e2202732797b",
           "Command": "/draft:\"false\""
         },
         {
-          "Id": "edb392cc-b974-4ecb-96a1-554757388e65",
+          "Id": "5882777c-7fd8-4267-b2b5-1b257235993f",
           "Command": "/delete-files-after-upload:\"false\""
+        }
+      ]
+    },
+    {
+      "Id": "c07f08b7-0f2e-45cb-911a-8a9fcb5b0f80",
+      "Command": "Release",
+      "Items": [
+        {
+          "Id": "ef0b156b-9571-480c-abdf-2f257633df5c",
+          "Command": "/file-for-version:\".\\..\\..\\..\\..\\..\\demodata\\0.1.2.3.dll\""
+        },
+        {
+          "Id": "fa9bed05-5e42-4ed1-8913-328c3cf78525",
+          "Command": "/pre-release:\"false\""
+        },
+        {
+          "Id": "6c863e67-e608-4911-8af4-3505403daed5",
+          "Command": "Create",
+          "Items": [
+            {
+              "Id": "22f04a2e-9908-426c-9d27-47249943aace",
+              "Command": "/release-attachments:\".\\..\\..\\..\\..\\..\\demodata\\example1.zip\""
+            },
+            {
+              "Id": "7e96d8ef-a588-4f65-81da-8913c361a9ff",
+              "Command": "/update-only:\"false\""
+            }
+          ]
+        },
+        {
+          "Id": "ac3e1ddc-3d45-4a2e-ac3c-0c0131ff23a2",
+          "Command": "Update",
+          "Items": [
+            {
+              "Id": "958d6c38-1e07-4b1f-86b0-b46a8647cb51",
+              "Command": "/release-attachments:\".\\..\\..\\..\\..\\..\\demodata\\example2.zip\""
+            },
+            {
+              "Id": "1babe658-503d-403e-9b04-ce8e6d1ccaa9",
+              "Command": "/update-only:\"true\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "52292cba-5320-476d-b3d2-c53a7734d873",
+      "Command": "PreRelease",
+      "Items": [
+        {
+          "Id": "a6460bf8-07be-48ea-b2f4-11bca9e86648",
+          "Command": "1",
+          "Items": [
+            {
+              "Id": "3735ff7a-efec-45ad-a02e-1f2fe65e5926",
+              "Command": "/file-for-version:\".\\..\\..\\..\\..\\..\\demodata\\0.1.2.3.exe\""
+            },
+            {
+              "Id": "a01d7c65-8590-4015-a84e-da00eb1e8ecd",
+              "Command": "/pre-release:\"true\""
+            }
+          ]
+        },
+        {
+          "Id": "366e7f5d-c51d-4654-b543-d58df7ce632e",
+          "Command": "2",
+          "Items": [
+            {
+              "Id": "3d532ca6-0e3e-4c7f-b7b1-a52c0bb6da9b",
+              "Command": "/file-for-version:\".\\..\\..\\..\\..\\..\\demodata\\0.1.2.4.exe\""
+            },
+            {
+              "Id": "9b865b29-f9de-4a90-9223-f3d66b3b777d",
+              "Command": "/pre-release:\"true\""
+            }
+          ]
+        },
+        {
+          "Id": "510f0921-93a1-430d-b361-d533c8bccbc7",
+          "Command": "3",
+          "Items": [
+            {
+              "Id": "b9f374e9-b6ca-4736-bd43-e461b143425d",
+              "Command": "/file-for-version:\".\\..\\..\\..\\..\\..\\demodata\\0.1.2.5.exe\""
+            },
+            {
+              "Id": "18635c82-15bb-4fbc-bb9f-cf09e2ac1314",
+              "Command": "/pre-release:\"false\""
+            }
+          ]
         }
       ]
     }
