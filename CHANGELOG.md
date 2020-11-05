@@ -1,6 +1,6 @@
 ## [1.0.0](https://github.com/Suplanus/GitHubReleaser/releases/tag/1.0.0.0)
 
-`Build: 0 | Date (UTC): 2020-11-06 10:23`
+`Build: 0 | Date (UTC): 2020-11-06 11:09`
 
 #### Enhancements:
 - [Changelog: Create](https://github.com/Suplanus/GitHubReleaser/issues/10)
