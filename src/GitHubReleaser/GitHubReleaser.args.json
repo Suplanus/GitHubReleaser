@@ -24,7 +24,7 @@
         },
         {
           "Id": "a9bc5139-2487-4f21-bf3b-42e386268760",
-          "Command": "/issue-labels:\"bug;Bug\" \"enhancement;Enhancement\""
+          "Command": "/issue-labels:\"bug;Bugs\" \"enhancement;Enhancements\""
         },
         {
           "Id": "41ddadf6-d226-4a7d-9a73-e2202732797b",
@@ -123,6 +123,24 @@
               "Command": "/pre-release:\"false\""
             }
           ]
+        }
+      ]
+    },
+    {
+      "Id": "003b4821-29aa-4299-b21e-74e6aa1a8e3f",
+      "Command": "Changelog",
+      "Items": [
+        {
+          "Id": "bf3469f3-51ed-4178-b198-8a9bbe5d967a",
+          "Command": "/update-only:\"true\""
+        },
+        {
+          "Id": "ec0d74ac-5047-403b-af55-c5d84f61fa16",
+          "Command": "/file-for-version:\".\\..\\..\\..\\..\\..\\demodata\\0.1.2.5.exe\""
+        },
+        {
+          "Id": "b137bcf8-e8a5-4387-8e57-7e20f6b2bf74",
+          "Command": "/pre-release:\"false\""
         }
       ]
     }

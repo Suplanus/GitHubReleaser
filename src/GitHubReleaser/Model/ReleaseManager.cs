@@ -45,15 +45,13 @@ namespace GitHubReleaser.Model
 
     public async Task<Release> CreateRelease()
     {
-      // Remove existing
+      // Check existing
       IReadOnlyList<Release> releases = await _releaser.Client.Repository.Release.GetAll(_releaser.Account, _releaser.Repo); // Get() throw exception if not found
       var release = releases.FirstOrDefault(obj => obj.Name.Equals(_releaser.VersionFull));
       if (release != null)
       {
-        Log.Information("Remove release...");
-        await _releaser.Client.Repository.Release.Delete(_releaser.Account, _releaser.Repo, release.Id);
-
-        // await _client.Git.Reference.Delete(ACCOUNT, REPO, VersionFull); // todo: Delete tag
+        Log.Error("Release already extists. Please use update.");
+        Environment.Exit(160);
       }
 
       // Create

@@ -12,6 +12,10 @@ namespace GitHubReleaser.Model
   {
     private readonly Releaser _releaser;
 
+    private static readonly string Alert = "| :warning: **Pre-release**|" +
+                                           Environment.NewLine +
+                                           "| --- |";
+
     public ChangelogManager(Releaser releaser)
     {
       _releaser = releaser;
@@ -96,10 +100,7 @@ namespace GitHubReleaser.Model
 
       if (_releaser.Settings.IsPreRelease)
       {
-        string alert = "| :warning: **PreRelease**: Bitte nur in Testumgebung nutzen! |" +
-                       Environment.NewLine +
-                       "| --- |";
-        changelog = alert + Environment.NewLine + changelog;
+        changelog = Alert + Environment.NewLine + changelog;
       }
 
       return changelog;
@@ -107,15 +108,17 @@ namespace GitHubReleaser.Model
 
     private string GetChangelogFromIssues(IEnumerable<IGrouping<string, IssueWithLabel>> issueGroups)
     {
-      // Todo: log
+      Log.Information("Issues:");
       var sb = new StringBuilder();
       foreach (var issueGroup in issueGroups)
       {
         sb.AppendLine();
         sb.AppendLine($"#### {issueGroup.Key}:");
+        Console.WriteLine("\t" + issueGroup.Key);
         foreach (IssueWithLabel issueWithLabel in issueGroup.OrderBy(obj => obj.Issue.Title))
         {
           sb.AppendLine($"- [{issueWithLabel.Issue.Title}]({issueWithLabel.Issue.HtmlUrl})");
+          Console.WriteLine("\t\t" + issueWithLabel.Issue.Title);
         }
       }
       string changelog = sb.ToString().Trim();
@@ -124,12 +127,9 @@ namespace GitHubReleaser.Model
 
     internal async Task Set()
     {
-      // todo
       Log.Information("Create Changelog...");
 
       StringBuilder sb = new StringBuilder();
-      sb.AppendLine("Changelog"); // needed for broken encoding
-      sb.AppendLine();
 
       var releases = await _releaser.Client.Repository.Release.GetAll(_releaser.Account, _releaser.Repo);
       foreach (var release in releases.OrderByDescending(obj => obj.CreatedAt.Date))
@@ -141,9 +141,8 @@ namespace GitHubReleaser.Model
 
         var version = new Version(release.Name);
         var versionToDisplay = $"{version.Major}.{version.Minor}.{version.Build}";
-        var dateTime = release.CreatedAt.DateTime.ToLocalTime();
-        dateTime = dateTime.AddDays(1); // Don't know why but this is needed
-        dateTime = dateTime.AddHours(1); // Think this is problem with summer & winter time
+        var dateTime = release.CreatedAt.DateTime.ToUniversalTime();
+        dateTime = dateTime.AddDays(1); // Don't know why this is needed
         var dateTimeToDisplay = dateTime.ToString("yyyy-MM-dd HH:mm");
 
         sb.AppendLine($"## [{versionToDisplay}]({release.HtmlUrl})");
@@ -151,16 +150,17 @@ namespace GitHubReleaser.Model
 
         if (release.Prerelease)
         {
-          sb.AppendLine($"#### Build: {version.Revision} | Date: {dateTimeToDisplay} | Prerelease");
+          sb.AppendLine($"`Build: {version.Revision} | Date (UTC): {dateTimeToDisplay} | Pre-release`");
         }
         else
         {
-          sb.AppendLine($"#### Build: {version.Revision} | Date: {dateTimeToDisplay}");
+          sb.AppendLine($"`Build: {version.Revision} | Date (UTC): {dateTimeToDisplay}`");
         }
 
         sb.AppendLine();
 
         string changeLog = release.Body.Trim();
+        changeLog = changeLog.Replace(Alert, ""); // Remove alert
         var changeLogLines = changeLog.Split('\n');
         foreach (var line in changeLogLines)
         {
@@ -174,18 +174,26 @@ namespace GitHubReleaser.Model
 
       // Commit Changelog
       var changelog = sb.ToString();
-      string path = "CHANGELOG.md";
       IReadOnlyList<RepositoryContent> contents = await _releaser.Client
                                                                  .Repository
                                                                  .Content
-                                                                 .GetAllContents(_releaser.Account, _releaser.Repo, path);
+                                                                 .GetAllContents(_releaser.Account, _releaser.Repo);
+      string path = "CHANGELOG.md";
+      RepositoryContent content = contents.FirstOrDefault(obj => obj.Path.Equals(path));
+      if (content == null)
+      {
+        Log.Error("Changelog.md not found");
+        Environment.Exit(160);
+      }
 
       await _releaser.Client.Repository.Content.CreateFile(
         _releaser.Account,
         _releaser.Repo,
         path,
         new UpdateFileRequest("Changelog",
-                              changelog, contents.First().Sha));
+                              changelog, content.Sha));
+
+      Console.WriteLine(changelog);
     }
   }
 }
