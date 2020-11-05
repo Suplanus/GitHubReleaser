@@ -168,7 +168,7 @@
             },
             {
               "Id": "7dff0d8f-2904-4956-859b-730dd2f7f0c8",
-              "Command": "/release-attachments:\".\\..\\Release.zip\""
+              "Command": "/release-attachments:\".\\..\\..\\Release.zip\""
             },
             {
               "Id": "7308522a-66f7-4abd-a134-13ecf87bd086",
