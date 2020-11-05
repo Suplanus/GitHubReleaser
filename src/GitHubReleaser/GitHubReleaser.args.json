@@ -121,6 +121,10 @@
             {
               "Id": "18635c82-15bb-4fbc-bb9f-cf09e2ac1314",
               "Command": "/pre-release:\"false\""
+            },
+            {
+              "Id": "34af3c38-a845-481e-8845-88db77275a59",
+              "Command": "/release-attachments:\".\\..\\..\\..\\..\\..\\demodata\\example1.zip\""
             }
           ]
         }

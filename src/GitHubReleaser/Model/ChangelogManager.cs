@@ -60,7 +60,7 @@ namespace GitHubReleaser.Model
 
         if (_releaser.Settings.IssueFilterLabel != null)
         {
-          if (issue.Labels.Any(obj => obj.Name.ToUpper().Equals(_releaser.Settings.IssueFilterLabel)))
+          if (issue.Labels.Any(obj => obj.Name.ToLower().Equals(_releaser.Settings.IssueFilterLabel.ToLower())))
           {
             continue;
           }
