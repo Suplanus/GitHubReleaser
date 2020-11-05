@@ -1,6 +1,6 @@
 ## [0.1.2](https://github.com/Suplanus/GitHubReleaser/releases/tag/0.1.2.5)
 
-`Build: 5 | Date (UTC): 2020-11-05 13:27`
+`Build: 5 | Date (UTC): 2020-11-06 09:18`
 
 #### Bugs:
 - [Test1](https://github.com/Suplanus/GitHubReleaser/issues/2)
