@@ -18,6 +18,8 @@ namespace GitHubReleaser.Model
 
     public bool IsDraft { get; set; }
 
+    public bool DeleteFilesAfterUpload { get; set; }
+
     public string FileForVersion { get; set; }
 
     public string GitHubToken { get; set; }

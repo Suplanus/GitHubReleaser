@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -23,7 +24,8 @@ namespace GitHubReleaser.Model
     public Releaser(ReleaserSettings releaserSettings)
     {
       Settings = releaserSettings;
-      var version = Assembly.LoadFile(Settings.FileForVersion).GetName().Version;
+      var fileVersion = FileVersionInfo.GetVersionInfo(Settings.FileForVersion);
+      var version = new Version(fileVersion.FileVersion);
       VersionMilestone = version.ToString(3);
       VersionFull = version.ToString();
 
@@ -60,11 +62,13 @@ namespace GitHubReleaser.Model
     private async Task<Release> CreateRelease()
     {
       // Remove existing
-      Release release = await _client.Repository.Release.Get(ACCOUNT, REPO, VersionFull);
+      IReadOnlyList<Release> releases = await _client.Repository.Release.GetAll(ACCOUNT, REPO); // Get() throw exception if not found
+      var release = releases.FirstOrDefault(obj => obj.Name.Equals(VersionFull));
       if (release != null)
       {
         Log.Information("Remove release...");
         await _client.Repository.Release.Delete(ACCOUNT, REPO, release.Id);
+        //await _client.Git.Reference.Delete(ACCOUNT, REPO, VersionFull); // todo: Delete tag
       }
 
       // Create
@@ -89,7 +93,7 @@ namespace GitHubReleaser.Model
 
       // Upload: Attachments
       Log.Information("Upload attachments...");
-      bool deleteFilesAfterUpload = true;
+      bool deleteFilesAfterUpload = Settings.DeleteFilesAfterUpload;
       try
       {
         for (var index = 0; index < Settings.ReleaseAttachments.Count; index++)
@@ -97,7 +101,7 @@ namespace GitHubReleaser.Model
           Log.Information(index + 1 + " / " + Settings.ReleaseAttachments.Count);
 
           var setupFile = Settings.ReleaseAttachments[index];
-          await using var archiveContents = File.OpenRead(setupFile);
+          using var archiveContents = File.OpenRead(setupFile);
           string assetFilename = Path.GetFileName(setupFile);
           var assetUpload = new ReleaseAssetUpload
           {
@@ -118,7 +122,7 @@ namespace GitHubReleaser.Model
       {
         foreach (var attachment in Settings.ReleaseAttachments)
         {
-          Directory.Delete(attachment, true);
+          File.Delete(attachment);
         }
       }
 
@@ -127,19 +131,21 @@ namespace GitHubReleaser.Model
 
     private async Task<string> GetReleaseChangelog()
     {
-      var releases = await _client.Repository.Release.GetAll(ACCOUNT, REPO);
-      Release lastRelease = releases.OrderBy(obj => obj.CreatedAt.DateTime).Last();
-      IssueRequest recently = new IssueRequest();
-      recently.Filter = IssueFilter.All;
-      recently.State = ItemStateFilter.Closed;
-
+      DateTimeOffset? lastReleaseCreatedDate = null;
       if (Settings.IsPreRelease)
       {
-        var lastReleaseCreatedDate = lastRelease.PublishedAt;
-        recently.Since = lastReleaseCreatedDate;
+        var releases = await _client.Repository.Release.GetAll(ACCOUNT, REPO);
+        Release lastRelease = releases.OrderBy(obj => obj.CreatedAt.DateTime).LastOrDefault();
+        if (lastRelease != null)
+        {
+          lastReleaseCreatedDate = lastRelease.PublishedAt;
+        }
       }
 
-      var allIssues = await _client.Issue.GetAllForCurrent(recently);
+      var repository = await _client.Repository.Get(ACCOUNT, REPO);
+      var allIssues = await _client.Issue.GetAllForRepository(repository.Id,
+                                                              new RepositoryIssueRequest
+                                                                { State = ItemStateFilter.Closed });
       var issuesWithLabel = new List<IssueWithLabel>();
       foreach (var issue in allIssues)
       {
@@ -161,15 +167,24 @@ namespace GitHubReleaser.Model
           }
         }
 
+        if (lastReleaseCreatedDate != null)
+        {
+          if (issue.ClosedAt <= lastReleaseCreatedDate)
+          {
+            continue;
+          }
+        }
+
         // Filter by issue label
         if (Settings.IssueLabels != null &&
             Settings.IssueLabels.Any())
         {
           foreach (var label in issue.Labels)
           {
-            if (Settings.IssueLabels.Any(obj => obj.Key.Equals(label.Name.ToLower())))
+            Settings.IssueLabels.TryGetValue(label.Name, out var labelHeader);
+            if (labelHeader != null)
             {
-              issuesWithLabel.Add(new IssueWithLabel(label.Name, issue));
+              issuesWithLabel.Add(new IssueWithLabel(labelHeader, issue));
               break;
             }
           }
@@ -266,6 +281,11 @@ namespace GitHubReleaser.Model
         path,
         new UpdateFileRequest("Changelog",
                               changelog, contents.First().Sha));
+    }
+
+    public async void Execute()
+    {
+      await ExecuteAsync();
     }
   }
 }

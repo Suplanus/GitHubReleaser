@@ -16,7 +16,7 @@
         },
         {
           "Id": "3735ff7a-efec-45ad-a02e-1f2fe65e5926",
-          "Command": "/file-for-version:\".\\GitHubReleaser.exe\""
+          "Command": "/file-for-version:\".\\..\\..\\..\\..\\..\\demodata\\1.2.3.4.dll\""
         },
         {
           "Id": "912b3373-c011-40ab-857c-1aa38c0b5042",
@@ -44,7 +44,11 @@
         },
         {
           "Id": "d9b72d73-4d90-4975-bae5-41bc95787a9a",
-          "Command": "/draft:\"true\""
+          "Command": "/draft:\"false\""
+        },
+        {
+          "Id": "edb392cc-b974-4ecb-96a1-554757388e65",
+          "Command": "/delete-files-after-upload:\"false\""
         }
       ]
     }

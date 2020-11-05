@@ -11,7 +11,7 @@ namespace GitHubReleaser
 {
   class Program
   {
-    static async Task Main(string[] args)
+    static async Task<int> Main(string[] args)
     {
       // Setup
       var argumentString = string.Join(" ", args.Skip(1));
@@ -27,6 +27,10 @@ namespace GitHubReleaser
       // Execute
       Releaser releaser = new Releaser(commandLine);
       await releaser.ExecuteAsync();
+
+      Log.Information("All looks good, have fun with your release!");
+
+      return 0;
     }
 
     private static CommandLineParameters GetCommandline(string[] args)
@@ -40,6 +44,7 @@ namespace GitHubReleaser
         Environment.Exit(160);
       }
 
+      commandLineParameters.FileForVersion = Path.GetFullPath(commandLineParameters.FileForVersion);
       if (!File.Exists(commandLineParameters.FileForVersion))
       {
         Log.Error($"File not exists: {commandLineParameters.FileForVersion}");
@@ -81,18 +86,31 @@ namespace GitHubReleaser
     {
       if (!string.IsNullOrWhiteSpace(value?.ToString()))
       {
-        if (value is List<string> list)
+        switch (value)
         {
-          string listValue = string.Empty;
-          foreach (var item in list)
+          case List<string> list:
           {
-            listValue = listValue + Environment.NewLine + "\t\t" + item;
+            string listValue = string.Empty;
+            foreach (var item in list)
+            {
+              listValue = listValue + Environment.NewLine + "\t\t" + item;
+            }
+            Log.Information($"{name}: {listValue}");
+            break;
           }
-          Log.Information($"{name}: {listValue}");  
-        }
-        else
-        {
-          Log.Information($"{name}: {value}");  
+          case Dictionary<string,string> list:
+          {
+            string listValue = string.Empty;
+            foreach (var item in list)
+            {
+              listValue = listValue + Environment.NewLine + "\t\t" + item.Key +" -> " + item.Value;
+            }
+            Log.Information($"{name}: {listValue}");
+            break;
+          }
+          default:
+            Log.Information($"{name}: {value}");
+            break;
         }
       }
     }

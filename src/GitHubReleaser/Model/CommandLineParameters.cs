@@ -46,12 +46,16 @@ namespace GitHubReleaser.Model
       parser.Setup(arg => arg.IsDraft)
             .As("draft");
 
+      parser.Setup(arg => arg.DeleteFilesAfterUpload)
+            .As("delete-files-after-upload");
+
       var result = parser.Parse(args);
       var commandLineArguments = parser.Object;
 
       // Manual map
       if (parser.Object.IssueLabelsWithHeader != null)
       {
+        parser.Object.IssueLabels = new Dictionary<string, string>();
         foreach (var issueLabelWithHeader in parser.Object.IssueLabelsWithHeader)
         {
           var split = issueLabelWithHeader.Split(';');
