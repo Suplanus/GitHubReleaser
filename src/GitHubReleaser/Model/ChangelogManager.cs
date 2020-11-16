@@ -134,11 +134,6 @@ namespace GitHubReleaser.Model
       var releases = await _releaser.Client.Repository.Release.GetAll(_releaser.Account, _releaser.Repo);
       foreach (var release in releases.OrderByDescending(obj => obj.CreatedAt.Date))
       {
-        if (release.Draft)
-        {
-          continue;
-        }
-
         var version = new Version(release.Name);
         var versionToDisplay = $"{version.Major}.{version.Minor}.{version.Build}";
         var dateTime = release.CreatedAt.DateTime.ToUniversalTime();
