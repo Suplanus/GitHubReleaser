@@ -89,7 +89,8 @@ namespace GitHubReleaser.Model
           {
             FileName = assetFilename,
             ContentType = "application/x-msdownload",
-            RawData = archiveContents
+            RawData = archiveContents,
+            Timeout = TimeSpan.FromHours(1) // Needed because there is a global timeout
           };
           await _releaser.Client.Repository.Release.UploadAsset(release, assetUpload);
         }
