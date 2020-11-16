@@ -182,8 +182,7 @@ namespace GitHubReleaser.Model
       RepositoryContent content = contents.FirstOrDefault(obj => obj.Path.Equals(path));
       if (content == null)
       {
-        Log.Error("Changelog.md not found");
-        Environment.Exit(160);
+        ErrorHandler.Log("Changelog.md not found");
       }
 
       await _releaser.Client.Repository.Content.CreateFile(
