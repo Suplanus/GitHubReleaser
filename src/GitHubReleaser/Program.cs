@@ -25,12 +25,17 @@ namespace GitHubReleaser
       var commandLine = GetCommandline(args);
 
       // Execute
-      Releaser releaser = new Releaser(commandLine);
-      await releaser.ExecuteAsync();
-
-      Log.Information("All looks good, have fun with your release!");
-
-      return 0;
+      try
+      {
+        Releaser releaser = new Releaser(commandLine);
+        await releaser.ExecuteAsync();
+        Log.Information("All looks good, have fun with your release!");
+        return 0;
+      }
+      catch
+      {
+        return 100;
+      }
     }
 
     private static CommandLineParameters GetCommandline(string[] args)
@@ -40,23 +45,20 @@ namespace GitHubReleaser
       // Checks
       if (commandLineParameters.Result.HasErrors)
       {
-        Log.Error($"Error in parameters: {commandLineParameters.Result.ErrorText}");
-        Environment.Exit(160);
+        ErrorHandler.Log($"Error in parameters: {commandLineParameters.Result.ErrorText}");
       }
 
       commandLineParameters.FileForVersion = Path.GetFullPath(commandLineParameters.FileForVersion);
       if (!File.Exists(commandLineParameters.FileForVersion))
       {
-        Log.Error($"File not exists: {commandLineParameters.FileForVersion}");
-        Environment.Exit(160);
+        ErrorHandler.Log($"File not exists: {commandLineParameters.FileForVersion}");
       }
 
       var extension = Path.GetExtension(commandLineParameters.FileForVersion)?.ToLower();
       if (extension != ".dll" &&
           extension != ".exe")
       {
-        Log.Error($"File type not supported: {extension}");
-        Environment.Exit(160);
+        ErrorHandler.Log($"File type not supported: {extension}");
       }
 
       if (commandLineParameters.ReleaseAttachments != null)
@@ -67,8 +69,7 @@ namespace GitHubReleaser
           var attachment = commandLineParameters.ReleaseAttachments[index];
           if (!File.Exists(attachment))
           {
-            Log.Error($"Attachment file not found: {attachment}");
-            Environment.Exit(160);
+            ErrorHandler.Log($"Attachment file not found: {attachment}");
           }
         }
       }
