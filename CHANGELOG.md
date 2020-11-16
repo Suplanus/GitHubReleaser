@@ -1,8 +1,9 @@
 ## [1.0.1](https://github.com/Suplanus/GitHubReleaser/releases/tag/1.0.1.103)
 
-`Build: 103 | Date (UTC): 2020-11-17 10:24`
+`Build: 103 | Date (UTC): 2020-11-17 10:29`
 
-
+#### Bugs:
+- [Timeout on large assets](https://github.com/Suplanus/GitHubReleaser/issues/12)
 
 ## [1.0.0](https://github.com/Suplanus/GitHubReleaser/releases/tag/1.0.0.0)
 
