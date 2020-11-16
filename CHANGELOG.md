@@ -1,3 +1,9 @@
+## [1.0.1](https://github.com/Suplanus/GitHubReleaser/releases/tag/1.0.1.103)
+
+`Build: 103 | Date (UTC): 2020-11-17 10:24`
+
+
+
 ## [1.0.0](https://github.com/Suplanus/GitHubReleaser/releases/tag/1.0.0.0)
 
 `Build: 0 | Date (UTC): 2020-11-06 11:24`
