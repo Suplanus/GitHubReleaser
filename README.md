@@ -18,7 +18,7 @@ Get a API-Token for your GitHub-User [here](https://github.com/settings/tokens).
 
 Execute GitHubRelease via command line:
 ```shell
-GitHubReleaser.exe /github-repo:"MyUsername/MyRepo" /github-token:"5578d3a8e0ed1c524e3c8c832e1533d79b16ad3c" /file-for-version:"C:\test\MyDllOrExe.dll" /pre-release:"false" /issue-labels:"bug;Bug\|feature;Feature" /issue-filter-label:"not-in-changelog" /release-attachments:"C:\test\MyDllOrExe1.zip" "C:\test\MyDllOrExe2.zip" /create-changelog-file:"false"
+GitHubReleaser.exe /github-repo:"MyUsername/MyRepo" /github-token:"5578d3a8e0ed1c524e3c8c832e1533d79b16ad3c" /file-for-version:"C:\test\MyDllOrExe.dll" /pre-release:"false" /issue-labels:"bug;Bug" "feature;Feature" /issue-filter-label:"not-in-changelog" /release-attachments:"C:\test\MyDllOrExe1.zip" "C:\test\MyDllOrExe2.zip" /create-changelog-file:"false"
 ```
 
 ## Parameter
