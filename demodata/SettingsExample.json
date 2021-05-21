@@ -1,0 +1,17 @@
+{
+  "IsChangelogFileCreationEnabled": false,
+  "IsUpdateOnly": true,
+  "ReleaseAttachments": [ ".\\..\\..\\..\\..\\..\\demodata\\example1.zip" ],
+  "IssueFilterLabel": "not-in-changelog",
+  "IssueLabels": {
+    "bug": "Bug",
+    "feature": "Feature",
+    "enhancement": "Enhancements"
+  },
+  "IsPreRelease": false,
+  "IsDraft": false,
+  "DeleteFilesAfterUpload": false,
+  "FileForVersion": ".\\..\\..\\..\\..\\..\\demodata\\0.1.2.3.dll",
+  "GitHubToken": "Fill out Secrets.cs",
+  "GitHubRepo": "Suplanus/GitHubReleaser"
+}

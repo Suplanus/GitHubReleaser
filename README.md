@@ -16,27 +16,55 @@ You can also update a release (changelog & attachments).
 ## Usage
 Get a API-Token for your GitHub-User [here](https://github.com/settings/tokens). We need the scope `repo`.
 
-Execute GitHubRelease via command line:
+Execute GitHubRelease via command line arguments:
 ```shell
 GitHubReleaser.exe /github-repo:"MyUsername/MyRepo" /github-token:"5578d3a8e0ed1c524e3c8c832e1533d79b16ad3c" /file-for-version:"C:\test\MyDllOrExe.dll" /pre-release:"false" /issue-labels:"bug;Bug" "feature;Feature" /issue-filter-label:"not-in-changelog" /release-attachments:"C:\test\MyDllOrExe1.zip" "C:\test\MyDllOrExe2.zip" /create-changelog-file:"false"
 ```
 
+Or open config file with GitHubRelease:
+```shell
+GitHubReleaser.exe "C:\test\MySettings.json"
+```
+
+Combining config file with commandline arguments is not supported yet.
+
 ## Parameter
 
-| Name                    | Example       | Required |
-|-------------------------|---------------|---------------|
-| `github-repo` | _MyUsername/MyRepo_ | ✅ |
-| `github-token`| _5578d3a8e0ed1c524e3c8c832e1533d79b16ad3c_ | ✅ |
-| `file-for-version`                        | "C:\test\MyDllOrExe.dll"     | ✅              |
-| `pre-release`                        | _false_              |               |
-| `issue-labels`                        | _"bug;Bug" "feature;Feature"_              |               |
-| `issue-filter-label`                        | not-in-changelog              |               |
-| `release-attachments`                        | _"C:\test\MyDllOrExe1.zip" "C:\test\MyDllOrExe2.zip"_              |               |
-| `update-only`                        | _false_              |               |
-| `create-changelog-file`                        | _false_              |               |
-| `draft`                        | _false_              |               |
-| `delete-files-after-upload`                        | _false_              |               |
+| Name                        | Example                                               | Required |
+| --------------------------- | ----------------------------------------------------- | -------- |
+| `github-repo`               | _MyUsername/MyRepo_                                   | ✅        |
+| `github-token`              | _5578d3a8e0ed1c524e3c8c832e1533d79b16ad3c_            | ✅        |
+| `file-for-version`          | "C:\test\MyDllOrExe.dll"                              | ✅        |
+| `pre-release`               | _false_                                               |          |
+| `issue-labels`              | _"bug;Bug" "feature;Feature"_                         |          |
+| `issue-filter-label`        | not-in-changelog                                      |          |
+| `release-attachments`       | _"C:\test\MyDllOrExe1.zip" "C:\test\MyDllOrExe2.zip"_ |          |
+| `update-only`               | _false_                                               |          |
+| `create-changelog-file`     | _false_                                               |          |
+| `draft`                     | _false_                                               |          |
+| `delete-files-after-upload` | _false_                                               |          |
 
+
+## Json Example
+
+```json
+{
+  "IsChangelogFileCreationEnabled": false,
+  "IsUpdateOnly": true,
+  "ReleaseAttachments": [ "C:\\test\\MyDllOrExe1.zip", "C:\\test\\MyDllOrExe2.zip" ],
+  "IssueFilterLabel": "not-in-changelog",
+  "IssueLabels": {
+    "bug": "Bug", 
+    "feature": "Feature"
+  },
+  "IsPreRelease": false,
+  "IsDraft": false,
+  "DeleteFilesAfterUpload": false,
+  "FileForVersion": "C:\\test\\MyDllOrExe.dll",
+  "GitHubToken": "_5578d3a8e0ed1c524e3c8c832e1533d79b16ad3c_",
+  "GitHubRepo": "MyUsername/MyRepo"
+}
+```
 
 ## Build
 For debugging you can add a Secrets.cs to the folder Model:

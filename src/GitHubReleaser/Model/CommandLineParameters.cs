@@ -1,6 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.Json;
 using Fclp;
+using Serilog;
 
 namespace GitHubReleaser.Model
 {
@@ -50,6 +54,7 @@ namespace GitHubReleaser.Model
             .As("delete-files-after-upload");
 
       var result = parser.Parse(args);
+
       var commandLineArguments = parser.Object;
 
       // Manual map
@@ -65,10 +70,87 @@ namespace GitHubReleaser.Model
 
       commandLineArguments.Result = result;
 
-#if DEBUG
+#if DEBUGG
       commandLineArguments.GitHubToken = Secrets.GitHubToken;
 #endif
       return commandLineArguments;
+    }
+
+    public static CommandLineParameters FromFile(string[] args)
+    {
+      if (args.Length != 1)
+      {
+        return null;
+      }
+
+      var configFile = args[0];
+
+      if (!File.Exists(configFile))
+      {
+        Log.Error($"File does not exits: {configFile}");
+        throw new FileNotFoundException("The file name passed with the argument 'config-file' does not exist",
+                                        configFile);
+      }
+
+      var commandLineParameters = new CommandLineParameters();
+      ReleaserSettings settings;
+
+      switch (Path.GetExtension(configFile))
+      {
+        case ".json":
+          settings = JsonDeserialize(configFile);
+          break;
+        case ".xml":
+          settings = XmlDeserialize(configFile);
+          break;
+        default:
+          Log.Error($"Unknown file type {Path.GetExtension(configFile)}");
+          throw new ArgumentException("The file name passed with the argument has an unknown file extension.",
+                                      "config-file");
+      }
+      commandLineParameters.MapProperties(settings);
+      
+      var parser = new FluentCommandLineParser<CommandLineParameters>();
+      parser.Setup(arg => arg.ConfigFile)
+            .As("config-file"); //dummy
+      commandLineParameters.Result = parser.Parse(args);
+      commandLineParameters.ConfigFile = configFile;
+      return commandLineParameters;
+    }
+
+    private static ReleaserSettings JsonDeserialize(string configFile)
+    {
+      try
+      {
+        var jsonString = File.ReadAllText(configFile);
+        var settings = JsonSerializer.Deserialize<ReleaserSettings>(jsonString);
+        return settings;
+      }
+      catch (Exception e)
+      {
+        Log.Error(e.Message);
+        throw;
+      }
+    }
+
+    private void MapProperties(ReleaserSettings settings)
+    {
+      IsChangelogFileCreationEnabled = settings.IsChangelogFileCreationEnabled;
+      IsUpdateOnly = settings.IsUpdateOnly;
+      ReleaseAttachments = settings.ReleaseAttachments;
+      IssueFilterLabel = settings.IssueFilterLabel;
+      IssueLabels = settings.IssueLabels;
+      IsPreRelease = settings.IsPreRelease;
+      IsDraft = settings.IsDraft;
+      DeleteFilesAfterUpload = settings.DeleteFilesAfterUpload;
+      FileForVersion = settings.FileForVersion;
+      GitHubToken = settings.GitHubToken;
+      GitHubRepo = settings.GitHubRepo;
+    }
+
+    private static ReleaserSettings XmlDeserialize(string configFile)
+    {
+      throw new NotImplementedException();
     }
   }
 }
