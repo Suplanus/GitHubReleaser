@@ -95,7 +95,6 @@ namespace GitHubReleaser.Model
       var commandLineParameters = new CommandLineParameters();
       ReleaserSettings settings;
       var extension = Path.GetExtension(configFile);
-
       switch (extension)
       {
         case ".json":
