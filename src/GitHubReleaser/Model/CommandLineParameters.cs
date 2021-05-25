@@ -70,7 +70,7 @@ namespace GitHubReleaser.Model
 
       commandLineArguments.Result = result;
 
-#if DEBUGG
+#if DEBUG
       commandLineArguments.GitHubToken = Secrets.GitHubToken;
 #endif
       return commandLineArguments;
@@ -94,8 +94,9 @@ namespace GitHubReleaser.Model
 
       var commandLineParameters = new CommandLineParameters();
       ReleaserSettings settings;
+      var extension = Path.GetExtension(configFile);
 
-      switch (Path.GetExtension(configFile))
+      switch (extension)
       {
         case ".json":
           settings = JsonDeserialize(configFile);
