@@ -40,7 +40,12 @@ namespace GitHubReleaser
 
     private static CommandLineParameters GetCommandline(string[] args)
     {
-      var commandLineParameters = CommandLineParameters.FromArguments(args);
+      CommandLineParameters commandLineParameters = CommandLineParameters.FromFile(args);
+
+      if (commandLineParameters == null)
+      {
+        commandLineParameters = CommandLineParameters.FromArguments(args);
+      }
 
       // Checks
       if (commandLineParameters.Result.HasErrors)
@@ -65,7 +70,8 @@ namespace GitHubReleaser
       {
         for (var index = 0; index < commandLineParameters.ReleaseAttachments.Count; index++)
         {
-          commandLineParameters.ReleaseAttachments[index] = Path.GetFullPath(commandLineParameters.ReleaseAttachments[index]);
+          commandLineParameters.ReleaseAttachments[index] =
+            Path.GetFullPath(commandLineParameters.ReleaseAttachments[index]);
           var attachment = commandLineParameters.ReleaseAttachments[index];
           if (!File.Exists(attachment))
           {
@@ -104,12 +110,12 @@ namespace GitHubReleaser
             Log.Information($"{name}: {listValue}");
             break;
           }
-          case Dictionary<string,string> list:
+          case Dictionary<string, string> list:
           {
             string listValue = string.Empty;
             foreach (var item in list)
             {
-              listValue = listValue + Environment.NewLine + "\t\t" + item.Key +" -> " + item.Value;
+              listValue = listValue + Environment.NewLine + "\t\t" + item.Key + " -> " + item.Value;
             }
             Log.Information($"{name}: {listValue}");
             break;

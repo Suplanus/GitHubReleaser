@@ -1,9 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Xml.Serialization;
+using System.Text.Json.Serialization.Converters;
+using Serilog;
 
 namespace GitHubReleaser.Model
 {
   internal class ReleaserSettings
   {
+    public string ConfigFile { get; set; }
+
     public bool IsChangelogFileCreationEnabled { get; set; }
 
     public bool IsUpdateOnly { get; set; }
