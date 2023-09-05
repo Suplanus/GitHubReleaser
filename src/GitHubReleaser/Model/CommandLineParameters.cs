@@ -69,10 +69,7 @@ namespace GitHubReleaser.Model
       }
 
       commandLineArguments.Result = result;
-
-#if DEBUG
-      commandLineArguments.GitHubToken = Secrets.GitHubToken;
-#endif
+      
       return commandLineArguments;
     }
 
@@ -144,7 +141,7 @@ namespace GitHubReleaser.Model
       IsDraft = settings.IsDraft;
       DeleteFilesAfterUpload = settings.DeleteFilesAfterUpload;
       FileForVersion = settings.FileForVersion;
-      GitHubToken = settings.GitHubToken;
+      GitHubToken = Environment.ExpandEnvironmentVariables(settings.GitHubToken);
       GitHubRepo = settings.GitHubRepo;
     }
 
