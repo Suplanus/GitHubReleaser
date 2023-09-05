@@ -23,8 +23,7 @@ namespace GitHubReleaser.Model
       Release release = releases.FirstOrDefault(obj => obj.Name.Equals(_releaser.VersionFull));
       if (release == null)
       {
-        Log.Error("Release to update not found");
-        Environment.Exit(160);
+        ErrorHandler.Log("Release to update not found");
       }
 
       ReleaseUpdate updateRelease = release.ToUpdate();
@@ -50,8 +49,7 @@ namespace GitHubReleaser.Model
       var release = releases.FirstOrDefault(obj => obj.Name.Equals(_releaser.VersionFull));
       if (release != null)
       {
-        Log.Error("Release already extists. Please use update.");
-        Environment.Exit(160);
+        ErrorHandler.Log("Release already extists. Please use update.");
       }
 
       // Create
@@ -91,7 +89,8 @@ namespace GitHubReleaser.Model
           {
             FileName = assetFilename,
             ContentType = "application/x-msdownload",
-            RawData = archiveContents
+            RawData = archiveContents,
+            Timeout = TimeSpan.FromHours(1) // Needed because there is a global timeout
           };
           await _releaser.Client.Repository.Release.UploadAsset(release, assetUpload);
         }

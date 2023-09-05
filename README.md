@@ -45,7 +45,7 @@ Combining config file with commandline arguments is not supported yet.
 | `delete-files-after-upload` | _false_                                               |          |
 
 
-## Json Example
+## Config file example
 
 ```json
 {
@@ -78,3 +78,5 @@ With a test milestone and some test issues you can simple run throw the steps:
 ## Contributing
 Feel free to make a pull-request 🦄
 Or simple make an issue for a bug report or feature request 💖
+
+Thanks to [Daniel Papp](https://github.com/DanielPa) for being a first class contributer.
