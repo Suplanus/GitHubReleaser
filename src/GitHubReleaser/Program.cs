@@ -34,6 +34,9 @@ namespace GitHubReleaser
       }
       catch
       {
+#if DEBUG
+        throw;
+#endif
         return 100;
       }
     }
