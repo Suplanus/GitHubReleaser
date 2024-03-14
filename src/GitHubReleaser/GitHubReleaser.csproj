@@ -7,10 +7,8 @@
     <AssemblyVersion>1.0.3.104</AssemblyVersion>
     <FileVersion>1.0.3.104</FileVersion>
     <TargetFramework>net7.0</TargetFramework>
-  </PropertyGroup>  
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DebugType>pdbonly</DebugType>
-    <DebugSymbols>true</DebugSymbols>
+    <Configurations>Release;Debug</Configurations>
+    <Platforms>x64</Platforms>
   </PropertyGroup>  
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net48|AnyCPU'">
     <ShouldCreateLogs>True</ShouldCreateLogs>
@@ -25,6 +23,12 @@
     <AssemblyFileVersionSettings>None.None.None.Increment</AssemblyFileVersionSettings>
     <AssemblyInfoVersionSettings>None.None.None.Increment</AssemblyInfoVersionSettings>
     <PrimaryVersionType>AssemblyVersionAttribute</PrimaryVersionType>
+  </PropertyGroup>  
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>  
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <OutputPath>bin\Release\</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
