@@ -32,11 +32,12 @@ namespace GitHubReleaser
         Log.Information("All looks good, have fun with your release!");
         return 0;
       }
-      catch
+      catch(Exception ex)
       {
 #if DEBUG
         throw;
 #endif
+        Log.Error(ex, "Error during release process");
         return 100;
       }
     }
