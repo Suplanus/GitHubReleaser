@@ -6,7 +6,9 @@
     <LangVersion>latest</LangVersion>
     <AssemblyVersion>1.0.4.105</AssemblyVersion>
     <FileVersion>1.0.4.105</FileVersion>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
+    <SelfContained Condition="$(Configuration) == 'Release'">true</SelfContained> 
+    <RuntimeIdentifier Condition="$(Configuration) == 'Release'">win-x64</RuntimeIdentifier>
     <Configurations>Release;Debug</Configurations>
     <Platforms>x64</Platforms>
   </PropertyGroup>  
