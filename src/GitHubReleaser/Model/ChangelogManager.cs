@@ -134,7 +134,12 @@ namespace GitHubReleaser.Model
       var releases = await _releaser.Client.Repository.Release.GetAll(_releaser.Account, _releaser.Repo);
       foreach (var release in releases.OrderByDescending(obj => obj.CreatedAt.Date))
       {
-        var version = new Version(release.Name);
+        if (!Version.TryParse(release.Name, out Version version))
+        {
+          Log.Warning($"Release '{release.Name}' hat kein gültiges Versionsformat und wird übersprungen.");
+          continue;
+        }
+
         var versionToDisplay = $"{version.Major}.{version.Minor}.{version.Build}";
         var dateTime = release.CreatedAt.DateTime.ToUniversalTime();
         dateTime = dateTime.AddDays(1); // Don't know why this is needed
